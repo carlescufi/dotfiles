@@ -1,0 +1,275 @@
+
+if [ -n "$ZSH_VERSION" ]; then
+   # assume Zsh
+   unalias run-help
+   autoload run-help
+   HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
+   alias help=run-help
+elif [ -n "$BASH_VERSION" ]; then
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    #export GIT_PS1_SHOWUPSTREAM=”auto”
+    if [[ -z "$TMUX" ]]; then
+       PS1_TMUX=
+    else
+       PS1_TMUX="[t]"
+    fi
+    export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h$PS1_TMUX \[\e[33m\]\w \[\e[34m\]$(__git_ps1 "(%s)")\[\e[0m\]\n$ '
+    source ~/bin/west-completion.bash
+else
+   echo "unknown shell"
+   exit 1
+fi
+
+export EDITOR=vim
+
+# Find inside source code
+alias finds='find . -iname "*.c" -or -iname "*.h" -or -iname "*.cpp" -or -iname "*.hpp" -or -iname "*.s" | xargs grep'
+alias findc='find . -iname "*.c" -or -iname "*.cpp" | xargs grep'
+alias findh='find . -iname "*.h" -or -iname "*.hpp" | xargs grep'
+alias findk='find . -type f -iname "Kconfig*" -or -iname "Kbuild*" -or -iname "*defconfig" -or -iname "*.conf" | xargs grep'
+alias findm='find . -iname "Makefile" | xargs grep'
+alias findr='find . -iname "*.rst" | xargs grep'
+alias findp='find . -iname "*.py" | xargs grep'
+alias findx='find . -iname "*.xml" | xargs grep'
+alias findd='find . -type f -iname "*.dox" | xargs grep'
+alias finda='find . -type f | xargs grep'
+alias ff='find . -type f -iname '
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cdz='cd ~/src/zephyr/zephyr'
+alias cdb='cd ~/src/mcuboot'
+alias cdn='cd ~/src/ncs'
+alias cdnz='cd ~/src/ncs/zephyr'
+alias cdnb='cd ~/src/ncs/mcuboot'
+alias cdnn='cd ~/src/ncs/nrf'
+alias cdnl='cd ~/src/ncs/nrfxlib'
+alias cdns='cd ~/src/ncs/sdk'
+alias cdw='cd ~/src/west'
+alias cds='cd ~/src'
+alias br='nrfjprog -r -f nrf52'
+alias flash='b2h && fh && br'
+alias gitmine='git rebase -i origin/bluetooth -x "git commit --amend --no-edit"'
+alias b51='make V=1 BOARD=nrf51_pca10028 && fdk51 outdir/nrf51_pca10028/'
+alias b52='make V=1 BOARD=nrf52_pca10040 && fdk52 outdir/nrf52_pca10040/'
+alias att='sudo ~/src/bluez/tools/btattach -B /dev/ttyACM0 -S 1000000 -R'
+alias attbz='sudo ~/src/bluez/tools/btattach -B /dev/ttyACM0 -S 1000000 -P h4'
+alias prox='sudo ~/src/bluez/tools/btproxy -i 0 -u'
+alias mon='sudo ~/src/bluez/monitor/btmon'
+alias mc='minicom -c on'
+alias mc0='mc -b 115200 -D /dev/ttyACM0'
+alias mc1='mc -b 115200 -D /dev/ttyACM1'
+alias mc2='mc -b 115200 -D /dev/ttyACM2'
+#alias tmux='~/src/tmux/tmux -2'
+alias tmux='tmux -2'
+alias ktmux='pkill -f "/home/carles/src/tmux/tmux -2 a"'
+alias zphook='scp -p -P 29418 carlescufi@gerrit.zephyrproject.org:hooks/commit-msg .git/hooks/'
+alias zpgcc='export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb'
+alias zpsdk='export ZEPHYR_TOOLCHAIN_VARIANT=zephyr'
+alias zpxt='export ZEPHYR_TOOLCHAIN_VARIANT=xtools'
+alias zclr='unset ZEPHYR_BASE; export PATH=`echo $PATH|sed "s|src/.*zephyr/scripts[:]*||g";hash -r`'
+alias idlx='indent -nbad -bap -nbc -bbo -hnl -br -brs -c33 -cd33 -ncdb -ce -ci4 -cli0 -d0 -di1 -nfc1 -i8 -ip0 -l80 -lp -npcs -nprs -npsl -sai -saf -saw -ncs -nsc -sob -nfca -cp33 -ss -ts8 -il1'
+alias python=python3
+alias wcmdt='PYTHONPATH=$(west list --format="{abspath}" west)/src:$PWD py.test'
+alias ncssc='zephyr/scripts/sanitycheck --board-root nrf/boards --testcase-root nrf/samples --testcase-root nrf/applications --build-only --disable-unrecognized-section-test -t ci_build --inline-logs'
+alias ncscc='source ../zephyr/zephyr-env.sh && ../ci-tools/scripts/check_compliance.py --commits HEAD~..HEAD'
+alias zu='zclr && source ~/src/zephyr/zephyr/zephyr-env.sh'
+alias zd='zclr && source ~/src/ncs/zephyr/zephyr-env.sh'
+# Reset nrf52840_pca10059
+alias rd='echo -n -e \\xc0\\x0c\\xc0 > /dev/ttyACM0'
+alias rpir='ssh pi@raspberrypi.local /home/pi/bin/usb/usb-power-cycle.sh'
+
+#if [ -n "$TMUX" ]; then export TERM="screen-256color"; fi
+#export TERM="xterm-256color"
+#export ZEPHYR_BASE="/home/carles/src/zephyr"
+export GNUARMEMB_TOOLCHAIN_PATH="~/bin/gcc-arm-none-eabi-9-2019-q4-major"
+export XTOOLS_TOOLCHAIN_PATH="/home/carles/bin/zephyr-sdk-ng-v0.1-beta2"
+#export PYOCD_DAPARG='limit_packets=True'
+
+source /usr/share/autojump/autojump.sh 2>/dev/null
+#pushd .
+#cdz
+#`west completion bash > ~/bin/west-completion.bash`
+#popd
+
+if [ -f /home/carles/bin/hub.bash_completion.sh ]; then
+	. /home/carles/bin/hub.bash_completion.sh
+fi
+
+function runx()
+{
+    number=$1
+    shift
+    for i in `seq $number`; do
+      echo "run $i"
+      $@
+    done
+}
+
+function sign()
+{
+	MCUBOOT=~/src/mcuboot
+	$MCUBOOT/scripts/imgtool.py sign -S 0x69000 --key $MCUBOOT/root-rsa-2048.pem --header-size 0x200 --align 8 --version 3.0 --included-header $1 $2	
+}
+
+
+function zb()
+{
+	if [ "$#" -lt 2 ]; then
+	echo "Please specify sample and board"
+	return 1
+	fi
+	pushd .
+	mkdir -p $1/build/$2 && cd $1/build/$2
+	if [ "$#" -eq 3 ]; then
+	echo "cmake -DBOARD=$2 -DCONF_FILE=$3"
+	cmake -DBOARD=$2 -DCONF_FILE=$3 ../..
+	else
+	echo "cmake -DBOARD=$2"
+	cmake -DBOARD=$2 ../..
+	fi
+	make
+	popd
+}
+
+function zbh()
+{
+	if [ "$#" -lt 1 ]; then
+	echo "Please specify board"
+	return 1
+	fi
+	if [ "$#" -eq 2 ]; then
+	zb . $1 $2
+	else
+	zb . $1
+	fi
+}
+
+function zm1()
+{
+	cmake -DBOARD=nrf51_pca10028 ..
+	make
+}
+function zm2()
+{
+	cmake -DBOARD=nrf52_pca10040 ..
+	make
+}
+function zm8()
+{
+	cmake -DBOARD=nrf52840_pca10056 ..
+	make
+}
+
+function zn1()
+{
+	cmake -GNinja -DBOARD=nrf51_pca10028 .. && ninja && ninja flash
+}
+function zn2()
+{
+	cmake -GNinja -DBOARD=nrf52_pca10040 .. && ninja && ninja flash
+}
+function zn8()
+{
+	cmake -GNinja -DBOARD=nrf52840_pca10056 .. && ninja && ninja flash
+}
+
+
+function rtt()
+{
+	printf 'NRF52840_XXAA\nSWD\n\n\n0\n/dev/stdout' | JLinkRTTLogger
+}
+
+function raw()
+{
+   	echo $1 $2
+	find . -type f -exec sed -i "s/\<$1\>/$2/g" {} \;
+}
+function rsw()
+{
+   	echo $1 $2
+	find . -iname *.[csh] -exec sed -i "s/\<$1\>/$2/g" {} \;
+}
+
+function grw()
+{
+       echo $1 $2
+       git grep -l "$1" | xargs sed -i "s/\<$1\>/$2/g"
+}
+
+function grt()
+{
+       echo $1 $2
+       git grep -l "$1" | xargs sed -i "s/$1/$2/g"
+}
+
+function cpatch()
+{
+   	echo $1
+	find $1 -type f -exec ~/src/zephyr/zephyr/scripts/checkpatch.pl -f {} \;
+}
+
+function focd52()
+{
+   	echo $1zephyr.hex
+	pyocd-flashtool -t nrf52 -ce $1zephyr.hex
+}
+
+function focd51()
+{
+   	echo $1zephyr.hex
+	pyocd-flashtool -t nrf51 -ce $1zephyr.hex
+}
+
+
+function fdk52()
+{
+   	echo $1
+   	echo $1zephyr.hex
+	if [ "$#" -eq 2 ]; then
+	nrfjprog -s $2 --eraseall -f nrf52 && nrfjprog -s $2 --program $1zephyr.hex -f nrf52 && nrfjprog -s $2 -r -f nrf52
+	else
+	nrfjprog --eraseall -f nrf52 && nrfjprog --program $1zephyr.hex -f nrf52 && nrfjprog -r -f nrf52
+	fi
+}
+
+function fdk51()
+{
+   	echo $1
+   	echo $1zephyr.hex
+	nrfjprog --eraseall -f nrf51 && nrfjprog --program $1zephyr.hex -f nrf51 && nrfjprog -r -f nrf51
+}
+
+function dbg52()
+{
+
+	JLinkGDBServer -device nrf52 -if swd -speed 4000 &
+	/home/carles/bin/zephyr-sdk/sysroots/i686-pokysdk-linux/usr/bin/arm-poky-eabi/arm-poky-eabi-gdb
+}
+
+function boot()
+{
+	MCUBOOT=~/src/mcuboot
+	sign $1 $1.signed
+	~/bin/hexmerge.py -o $1.merged $MCUBOOT/boot/zephyr/b/zephyr/zephyr.hex $1.signed
+	nrfjprog --eraseall -f nrf52 && nrfjprog --program $1.merged -f nrf52 && nrfjprog -r -f nrf52
+}
+
+
+
+function mmb()
+{
+	pushd .
+	cd $GOPATH/src/github.com/apache/mynewt-mcumgr-cli/mcumgr
+	pwd
+	go install
+	popd
+}
+#export PATH=$PATH:~/bin/nrfjprog/:~/bin/cmake-3.8.2-Linux-x86_64/bin
+GPG_TTY=$(tty)
+export GPG_TTY
+export GOPATH=~/bin/go
+export PATH=$PATH:~/bin/cmake/cmake-3.13.1-Linux-x86_64/bin:~/bin/nrfjprog/:~/bin/go/bin/
+

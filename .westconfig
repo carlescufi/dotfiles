@@ -1,0 +1,9 @@
+[zephyr]
+base-prefer = configfile
+
+[build]
+pristine = auto
+board = nrf52840dk_nrf52840
+#dir-fmt = build/{board}
+guess-dir = runners
+
