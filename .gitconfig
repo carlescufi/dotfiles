@@ -1,0 +1,57 @@
+[user]
+        name = Carles Cufi
+        email = carles.cufi@nordicsemi.no
+	signingkey = 51AC9DF9005833956CFF98FC40FE518ADD7768E6
+[core]
+	autocrlf = input
+	filemode = false
+[push]
+        default = simple
+[pull]
+	rebase = false
+[color]
+        ui = true
+[diff]
+        tool = bc4
+[credential]
+	helper = cache
+[alias]
+  logc = log --graph --decorate --date=relative --pretty=format:\"%C(auto)%h - %C(red)%<(4,trunc)%an %C(blue)%<(24,trunc)%ad : %C(reset)%s\"
+  lod = log --graph --decorate --date=local --pretty=format:\"%h - %an, %ad : %s\"
+  logol = log --date=local --pretty=format:\"%h - %an, %ad : %s\"
+  lodl = log --graph --decorate --first-parent --date=local --pretty=format:\"%h - %an, %ad : %s\"
+  lol = log --graph --decorate --oneline
+  lola = log --graph --decorate --oneline --all
+  loll = log --graph --decorate --oneline --first-parent
+  hd = rev-parse HEAD
+  co = checkout
+  cp = cherry-pick
+  rh = reset --hard
+  ri = rebase -i
+  rc = rebase --continue
+  ci = commit
+  cia = commit -a
+  ca = commit --amend
+  fm = fetch -v origin master:master
+  st = status --short --branch
+  rhm = reset --hard upstream/master
+  rem = remote -v
+  remso = remote show origin
+  b = branch -vv
+  br = branch -vv -a
+  cfg = config -l
+  mb = merge-base
+  stat = status --porcelain --branch
+  st = status
+  sta = status --porcelain --branch --ignored
+  nuke = clean -ffdx
+  sm =  submodule status
+  sminit =  submodule init
+  smup = submodule update
+  smnuke =  submodule deinit -f .
+  cl = clean -fdx -e stack/import/* -e bin/git_hooks
+  sb = show-branch --sha1-name
+  prr = remote prune origin
+  dellb = branch --delete
+  delrb = push origin --delete
+  cred =  config --global credential.helper 'cache --timeout=3600' 

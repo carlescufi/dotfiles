@@ -1,0 +1,8 @@
+[zephyr]
+base-prefer = configfile
+
+[build]
+pristine = auto
+board = nrf52840_pca10056
+dir-fmt = build/{board}/{source_dir}
+
