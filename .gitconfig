@@ -1,6 +1,6 @@
 [user]
-        name = Carles Cufi
-        email = carles.cufi@nordicsemi.no
+	name = Carles Cufi
+	email = carles.cufi@nordicsemi.no
 	signingkey = 51AC9DF9005833956CFF98FC40FE518ADD7768E6
 [core]
 	autocrlf = input
@@ -55,3 +55,6 @@
   dellb = branch --delete
   delrb = push origin --delete
   cred =  config --global credential.helper 'cache --timeout=3600' 
+[github]
+	user = carlescufi
+	token = 9778f1b6e61e2af37ebfbaa17d18b1f22aa489d3

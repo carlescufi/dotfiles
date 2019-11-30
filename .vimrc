@@ -6,6 +6,8 @@ set showcmd             " display incomplete commands
 set incsearch           " do incremental searching
 set hlsearch
 set autoread
+set nofoldenable
+set linebreak
 colorscheme molokai
 "set term=screen-256color
 "set term=screen

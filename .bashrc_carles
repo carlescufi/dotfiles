@@ -1,6 +1,5 @@
 export GIT_PS1_SHOWDIRTYSTATE="1"
 source ~/dotfiles/git-prompt.sh
-#PS1="'[\u@\h \W\$(__git_ps1 "'" (%s)")]\$'
 
 case "$OSTYPE" in
   darwin*)
@@ -259,5 +258,5 @@ function mmb()
 GPG_TTY=$(tty)
 export GPG_TTY
 export GOPATH=~/bin/go
-export PATH=$PATH:~/bin/cmake/cmake-3.13.1-Linux-x86_64/bin:~/bin/scancode-toolkit-2.2.1/:~/bin/nrfjprog/:~/bin/go/bin/
+export PATH=$PATH:~/bin/cmake/cmake-3.13.1-Linux-x86_64/bin:~/bin/nrfjprog/:~/bin/go/bin/
 
