@@ -3,8 +3,8 @@
 	email = carles.cufi@nordicsemi.no
 	signingkey = 51AC9DF9005833956CFF98FC40FE518ADD7768E6
 [core]
-	autocrlf = input
-	filemode = false
+	#autocrlf = input
+	#filemode = false
 [push]
         default = simple
 [pull]
