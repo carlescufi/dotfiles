@@ -3,7 +3,7 @@ base-prefer = configfile
 
 [build]
 pristine = auto
-board = nrf52840_pca10056
+board = nrf52840dk_nrf52840
 #dir-fmt = build/{board}
 guess-dir = runners
 

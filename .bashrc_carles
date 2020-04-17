@@ -72,6 +72,7 @@ alias mon='sudo ~/src/bluez/monitor/btmon'
 alias mc='minicom -c on'
 alias mc0='mc -b 115200 -D /dev/ttyACM0'
 alias mc1='mc -b 115200 -D /dev/ttyACM1'
+alias mc2='mc -b 115200 -D /dev/ttyACM2'
 #alias tmux='~/src/tmux/tmux -2'
 alias tmux='tmux -2'
 alias ktmux='pkill -f "/home/carles/src/tmux/tmux -2 a"'
@@ -94,7 +95,7 @@ alias rd='echo -n -e \\xc0\\x0c\\xc0 > /dev/ttyACM0'
 #if [ -n "$TMUX" ]; then export TERM="screen-256color"; fi
 #export TERM="xterm-256color"
 #export ZEPHYR_BASE="/home/carles/src/zephyr"
-export GNUARMEMB_TOOLCHAIN_PATH="~/bin/gcc-arm-none-eabi-8-2018-q4-major"
+export GNUARMEMB_TOOLCHAIN_PATH="~/bin/gcc-arm-none-eabi-9-2019-q4-major"
 export XTOOLS_TOOLCHAIN_PATH="/home/carles/bin/zephyr-sdk-ng-v0.1-beta2"
 #export PYOCD_DAPARG='limit_packets=True'
 
@@ -190,7 +191,7 @@ function zn8()
 
 function rtt()
 {
-	printf '\nSWD\n\n\n0\n/dev/stdout' | JLinkRTTLogger
+	printf 'NRF52840_XXAA\nSWD\n\n\n0\n/dev/stdout' | JLinkRTTLogger
 }
 
 function raw()
