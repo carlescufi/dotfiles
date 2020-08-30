@@ -90,7 +90,7 @@ alias zu='zclr && source ~/src/zephyr/zephyr/zephyr-env.sh'
 alias zd='zclr && source ~/src/ncs/zephyr/zephyr-env.sh'
 # Reset nrf52840_pca10059
 alias rd='echo -n -e \\xc0\\x0c\\xc0 > /dev/ttyACM0'
-#alias git=hub
+alias rpir='ssh pi@raspberrypi.local /home/pi/bin/usb/usb-power-cycle.sh'
 
 #if [ -n "$TMUX" ]; then export TERM="screen-256color"; fi
 #export TERM="xterm-256color"
