@@ -1,6 +1,7 @@
 BoldAsFont=no
 CursorType=block
-Font=Courier
+Font=Consolas
+FontHeight=10
 ForegroundColour=248,248,242
 BackgroundColour=20,21,27
 Black=0,0,0
