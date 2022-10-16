@@ -51,6 +51,7 @@ _common_init()
     export PATH=$PATH:~/bin:~/.local/bin/
     GPG_TTY=$(tty)
     export GPG_TTY
+    export STARSHIP_CONFIG=~/dotfiles/starship.toml
 }
 
 _common_init
