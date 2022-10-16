@@ -11,10 +11,10 @@ _omz_init()
     # HIST_STAMPS="mm/dd/yyyy"
     plugins=(git)
     ZSH_CUSTOM=~/dotfiles/omz-custom
-    unset LESS;
 
     source $ZSH/oh-my-zsh.sh
 
+    unset LESS;
     path+=(~/bin)
 }
 
