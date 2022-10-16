@@ -27,15 +27,19 @@ _zsh_init()
     alias help=run-help
     export CLICOLOR=1
 
-    _omz_init
+    eval "$(starship init zsh)"
+
+    #_omz_init
 }
 
 _bash_init()
 {
-    export GIT_PS1_SHOWDIRTYSTATE=1
+    #export GIT_PS1_SHOWDIRTYSTATE=1
     #export GIT_PS1_SHOWUPSTREAM=”auto”
-    export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h$PS1_TMUX \[\e[33m\]\w \[\e[34m\]$(__git_ps1 "(%s)")\[\e[0m\]\n$ '
+    #export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h$PS1_TMUX \[\e[33m\]\w \[\e[34m\]$(__git_ps1 "(%s)")\[\e[0m\]\n$ '
     source ~/bin/west-completion.bash
+
+    eval "$(starship init bash)"
 }
 
 _common_init()
