@@ -18,7 +18,13 @@ theme_precmd () {
 }
 
 setopt prompt_subst
-PROMPT='%{$fg[magenta]%}$(toon)%{$reset_color%} %~/ %{$reset_color%}${vcs_info_msg_0_}%{$reset_color%}'
+
+function prompt_char {
+	if [ $UID -eq 0 ]; then echo "%{$fg[red]%}#%{$reset_color%}"; else echo $; fi
+}
+
+PROMPT='%{$fg[magenta]%}%{$reset_color%}%~/ %{$reset_color%}${vcs_info_msg_0_}%{$reset_color%}
+$(prompt_char) '
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd theme_precmd
