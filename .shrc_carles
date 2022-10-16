@@ -1,20 +1,58 @@
+_omz_init()
+{
+    export ZSH="$HOME/.oh-my-zsh"
+    ZSH_THEME="carles"
+    # Uncomment the following line to use case-sensitive completion.
+    # CASE_SENSITIVE="true"
+    # Uncomment the following line to enable command auto-correction.
+    # ENABLE_CORRECTION="true"
+    # COMPLETION_WAITING_DOTS="true"
+    # DISABLE_UNTRACKED_FILES_DIRTY="true"
+    # HIST_STAMPS="mm/dd/yyyy"
+    plugins=(git)
+    ZSH_CUSTOM=~/dotfiles/omz-custom
+    unset LESS;
 
-if [ -n "$ZSH_VERSION" ]; then
-   # assume Zsh
-   unalias run-help
-   autoload run-help
-   HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
-   alias help=run-help
-elif [ -n "$BASH_VERSION" ]; then
+    source $ZSH/oh-my-zsh.sh
+
+    path+=(~/bin)
+}
+
+_zsh_init()
+{
+    # enable "help cmd"
+    #unalias run-help
+    autoload run-help
+    HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
+    alias help=run-help
+    export CLICOLOR=1
+
+    _omz_init
+}
+
+_bash_init()
+{
     export GIT_PS1_SHOWDIRTYSTATE=1
     #export GIT_PS1_SHOWUPSTREAM=”auto”
-    if [[ -z "$TMUX" ]]; then
-       PS1_TMUX=
-    else
-       PS1_TMUX="[t]"
-    fi
     export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h$PS1_TMUX \[\e[33m\]\w \[\e[34m\]$(__git_ps1 "(%s)")\[\e[0m\]\n$ '
     source ~/bin/west-completion.bash
+}
+
+_common_init()
+{
+    if [[ -z "$TMUX" ]]; then
+        PS1_TMUX=
+    else
+        PS1_TMUX="[t]"
+    fi
+}
+
+_common_init
+if [ -n "$ZSH_VERSION" ]; then
+   # assume Zsh
+   _zsh_init
+elif [ -n "$BASH_VERSION" ]; then
+   _bash_init
 else
    echo "unknown shell"
    exit 1
