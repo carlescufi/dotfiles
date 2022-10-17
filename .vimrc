@@ -25,6 +25,9 @@ nnoremap <leader>b :ls<cr>:b<space>
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzw0ns5/?utm_source=share&utm_medium=web2x&context=3
 autocmd TerminalOpen * setlocal nobuflisted
 
+" Fugitive
+autocmd QuickFixCmdPost *grep* cwindow
+
 "https://vi.stackexchange.com/a/14536
 "cnoremap <expr> ls<CR> (getcmdtype() == ':' && getcmdpos() == 1) ? "ls\<CR>:b" : "ls"
 
