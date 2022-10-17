@@ -30,23 +30,15 @@ $memory_usage\
 $azure\
 $custom\
 $sudo\
+$status\
 $cmd_duration\
 $line_break\
 $jobs\
 $battery\
 $time\
-$status\
 $container\
 $shell\
 $character"""
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
-[cmake]
-disabled = true
-[c]
-disabled = true
 
 [username]
 format="[$user]($style)"
@@ -55,7 +47,7 @@ show_always = true
 [hostname]
 ssh_only = false
 ssh_symbol="@"
-format="[$ssh_symbol$hostname$PS1_TMUX]($style) "
+format="[$ssh_symbol$hostname]($style) "
 
 [env_var.PS1_TMUX]
 disabled = false
@@ -84,3 +76,8 @@ untracked = ""
 
 [python]
 symbol = "py "
+
+[status]
+disabled = false
+symbol = "err: "
+map_symbol = false
