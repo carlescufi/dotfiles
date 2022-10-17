@@ -15,7 +15,6 @@ _omz_init()
     source $ZSH/oh-my-zsh.sh
 
     unset LESS;
-    path+=(~/bin)
 }
 
 _zsh_init()
@@ -49,6 +48,9 @@ _common_init()
     else
         PS1_TMUX="[t]"
     fi
+    export PATH=$PATH:~/bin:~/.local/bin/
+    GPG_TTY=$(tty)
+    export GPG_TTY
 }
 
 _common_init
@@ -309,9 +311,4 @@ function mmb()
 	go install
 	popd
 }
-#export PATH=$PATH:~/bin/nrfjprog/:~/bin/cmake-3.8.2-Linux-x86_64/bin
-GPG_TTY=$(tty)
-export GPG_TTY
-export GOPATH=~/bin/go
-export PATH=$PATH:~/bin/cmake/cmake-3.13.1-Linux-x86_64/bin:~/bin/nrfjprog/:~/bin/go/bin/
 
