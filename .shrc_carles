@@ -44,9 +44,9 @@ _bash_init()
 _common_init()
 {
     if [[ -z "$TMUX" ]]; then
-        PS1_TMUX=
+        export PS1_TMUX=""
     else
-        PS1_TMUX="[t]"
+        export PS1_TMUX="[t] "
     fi
     export PATH=$PATH:~/bin:~/.local/bin/
     GPG_TTY=$(tty)
