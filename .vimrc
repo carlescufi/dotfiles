@@ -26,7 +26,11 @@ nnoremap <leader>b :ls<cr>:b<space>
 autocmd TerminalOpen * setlocal nobuflisted
 
 " Fugitive
-autocmd QuickFixCmdPost *grep* cwindow
+"autocmd QuickFixCmdPost *grep* cwindow
+"https://stackoverflow.com/a/5723927
+" Use grep! or Ggrep! to avoid opening the first window
+"https://stackoverflow.com/a/27721306
+command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 
 "https://vi.stackexchange.com/a/14536
 "cnoremap <expr> ls<CR> (getcmdtype() == ':' && getcmdpos() == 1) ? "ls\<CR>:b" : "ls"
