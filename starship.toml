@@ -43,10 +43,12 @@ $character"""
 [username]
 format="[$user]($style)"
 show_always = true
+style_user="yellow"
 
 [hostname]
 ssh_only = false
 format="[@$hostname]($style) "
+style="dimmed green"
 
 [env_var.PS1_TMUX]
 disabled = false
@@ -56,14 +58,17 @@ format = "[$env_value]($style)in "
 [directory]
 truncation_length=100
 truncate_to_repo=false
+style="cyan"
 
 [git_branch]
 symbol = ""
+style="purple"
 
 [git_commit]
 tag_symbol = " tag "
 
 [git_status]
+style="red"
 modified = "*"
 ahead = ">"
 behind = "<"
