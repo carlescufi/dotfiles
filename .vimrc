@@ -37,17 +37,26 @@ nnoremap <C-G> :Ggr <cword><CR>
 
 " Grepping and rg
 " https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
-set grepprg=rg\ --vimgrep\ --hidden\ --no-heading\ --smart-case
-
 function! Grep(...)
+        set grepprg=rg\ --vimgrep\ --hidden\ --no-heading\ --smart-case
+	return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+endfunction
+
+function! GitGrep(...)
+        set grepprg=git\ grep\ --no-color\ -n
 	return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
 endfunction
 
 command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
 
+command! -nargs=+ -complete=file_in_path -bar GitGrep  cgetexpr GitGrep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGitGrep lgetexpr GitGrep(<f-args>)
+
 cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
 cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
+cnoreabbrev <expr> gg  (getcmdtype() ==# ':' && getcmdline() ==# 'gg')  ? 'GitGrep'  : 'gitgrep'
+cnoreabbrev <expr> lgitgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgitgrep') ? 'LGitGrep' : 'lgitgrep'
 
 augroup quickfix
 	autocmd!
@@ -107,20 +116,20 @@ else
 
 endif " has("autocmd")
 
-func GitGrep(...)
-  let save = &grepprg
-  set grepprg=git\ grep\ -n\ $*
-  let s = 'grep'
-  for i in a:000
-    let s = s . ' ' . i
-  endfor
-  exe s
-  let &grepprg = save
-endfun
-command -nargs=? G call GitGrep(<f-args>)
+"func GitGrep(...)
+"  let save = &grepprg
+"  set grepprg=git\ grep\ -n\ $*
+"  let s = 'grep'
+"  for i in a:000
+"    let s = s . ' ' . i
+"  endfor
+"  exe s
+"  let &grepprg = save
+"endfun
+"command -nargs=? G call GitGrep(<f-args>)
 
-func GitGrepWord()
-  normal! "zyiw
-  call GitGrep('-w -e ', getreg('z'))
-endf
-nmap <C-x>G :call GitGrepWord()<CR>
+"func GitGrepWord()
+"  normal! "zyiw
+"  call GitGrep('-w -e ', getreg('z'))
+"endf
+"nmap <C-x>G :call GitGrepWord()<CR>
