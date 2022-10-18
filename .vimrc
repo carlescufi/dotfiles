@@ -11,6 +11,7 @@ set nofoldenable
 set linebreak
 set splitbelow
 set belloff=all
+set runtimepath+=~/dotfiles/vim
 colorscheme molokai
 "set term=screen-256color
 "set term=screen
