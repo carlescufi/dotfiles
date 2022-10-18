@@ -46,8 +46,7 @@ show_always = true
 
 [hostname]
 ssh_only = false
-ssh_symbol="@"
-format="[$ssh_symbol$hostname]($style) "
+format="[@$hostname]($style) "
 
 [env_var.PS1_TMUX]
 disabled = false
