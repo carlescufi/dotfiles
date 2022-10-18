@@ -23,8 +23,10 @@ tnoremap <Esc><Esc> <C-w><S-n>
 
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzvwfdf/?utm_source=share&utm_medium=web2x&context=3
 nnoremap <leader>b :ls<cr>:b<space>
+" Terminal
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzw0ns5/?utm_source=share&utm_medium=web2x&context=3
 autocmd TerminalOpen * setlocal nobuflisted
+set termwinsize=25x0
 
 " Plugins
 " Install vim-plug if not found
@@ -39,6 +41,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
+"FZF configuration
+"https://github.com/junegunn/fzf/blob/master/README-VIM.md
+"https://github.com/junegunn/fzf.vim#readme
 let g:fzf_layout = { 'down': '40%' }
 cnoreabbrev <expr> files  (getcmdtype() ==# ':' && getcmdline() ==# 'files')  ? 'Files'  : 'files'
 nnoremap <C-p> :Files<CR>
