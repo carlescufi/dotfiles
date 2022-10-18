@@ -26,6 +26,24 @@ nnoremap <leader>b :ls<cr>:b<space>
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzw0ns5/?utm_source=share&utm_medium=web2x&context=3
 autocmd TerminalOpen * setlocal nobuflisted
 
+" Plugins
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+call plug#end()
+
+let g:fzf_layout = { 'down': '40%' }
+cnoreabbrev <expr> files  (getcmdtype() ==# ':' && getcmdline() ==# 'files')  ? 'Files'  : 'files'
+nnoremap <C-p> :Files<CR>
+"""""""""""
+
 " Fugitive
 "autocmd QuickFixCmdPost *grep* cwindow
 "https://stackoverflow.com/a/5723927
@@ -33,7 +51,6 @@ autocmd TerminalOpen * setlocal nobuflisted
 "https://stackoverflow.com/a/27721306
 "command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 command -nargs=+ Ggr execute 'Ggrep! -q' <q-args>
-nnoremap <C-G> :Ggr <cword><CR>
 """"""""
 
 " Grepping and rg
@@ -64,6 +81,8 @@ augroup quickfix
 	autocmd QuickFixCmdPost cgetexpr cwindow
 	autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
+
+nnoremap <C-G> :GitGrep <cword><CR>
 """"""""
 
 "https://vi.stackexchange.com/a/14536
