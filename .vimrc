@@ -32,7 +32,29 @@ autocmd TerminalOpen * setlocal nobuflisted
 "https://stackoverflow.com/a/27721306
 "command -nargs=+ Ggr execute 'silent Ggrep!' <q-args> | cw | redraw!
 command -nargs=+ Ggr execute 'Ggrep! -q' <q-args>
-nnoremap <C-F> :Ggr <cword><CR>
+nnoremap <C-G> :Ggr <cword><CR>
+""""""""
+
+" Grepping and rg
+" https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3
+set grepprg=rg\ --vimgrep\ --hidden\ --no-heading\ --smart-case
+
+function! Grep(...)
+	return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+endfunction
+
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+
+cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
+cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
+
+augroup quickfix
+	autocmd!
+	autocmd QuickFixCmdPost cgetexpr cwindow
+	autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
+""""""""
 
 "https://vi.stackexchange.com/a/14536
 "cnoremap <expr> ls<CR> (getcmdtype() == ':' && getcmdpos() == 1) ? "ls\<CR>:b" : "ls"
