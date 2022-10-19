@@ -35,7 +35,7 @@ filetype plugin indent on
 " appearance
 set encoding=utf-8
 set termencoding=utf-8
-set term=screen-256color
+"set term=screen-256color
 set colorcolumn=80 " Set a ruler for 80 chars width
 set nowrap
 set number " Display line numbers
