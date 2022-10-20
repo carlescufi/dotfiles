@@ -100,7 +100,6 @@ endif
 
 let vp_path = lvim_path . 'autoload/plug.vim'
 if empty(glob(vp_path))
-  error 124
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
