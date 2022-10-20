@@ -92,7 +92,15 @@ tnoremap <Esc><Esc> <C-w><S-n>
 
 " Plugins
 " Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
+if has('win32') || has('win64')
+    let lvim_path = '~/vimfiles/'
+else
+    let lvim_path = '~/.vim/'
+endif
+
+let vp_path = lvim_path . 'autoload/plug.vim'
+if empty(glob(vp_path))
+  error 124
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
