@@ -56,12 +56,13 @@ style = "fg:green"
 format = "[$env_value]($style)in "
 
 [directory]
+format = "  [$path]($style)[$read_only]($read_only_style) "
 truncation_length=100
 truncate_to_repo=false
 style="cyan"
 
 [git_branch]
-symbol = ""
+symbol = ""
 style="purple"
 
 [git_commit]
@@ -79,7 +80,7 @@ stashed = ""
 untracked = ""
 
 [python]
-symbol = "py "
+#symbol = "py "
 
 [status]
 disabled = false

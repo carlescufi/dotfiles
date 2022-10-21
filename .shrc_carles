@@ -46,7 +46,7 @@ _common_init()
     if [[ -z "$TMUX" ]]; then
         export PS1_TMUX=""
     else
-        export PS1_TMUX="[t] "
+        export PS1_TMUX="  "
     fi
     export PATH=$PATH:~/bin:~/.local/bin/
     GPG_TTY=$(tty)

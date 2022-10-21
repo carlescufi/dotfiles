@@ -65,8 +65,8 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 " key bindings
 " nnoremap <SPACE> <Nop>
-" let mapleader=" "
-let mapleader = ","
+let mapleader=" "
+" let mapleader = ","
 "" disable highlights
 map <silent> <leader><space> :nohl<CR>
 "" remove trailing spaces
@@ -155,7 +155,10 @@ augroup quickfix
 	autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
 
+nnoremap <Leader>g :GitGrep <cword><CR>
+nnoremap <Leader>gw :GitGrep -w <cword><CR>
 nnoremap <C-G> :GitGrep <cword><CR>
+nnoremap <C-F> :GitGrep -w <cword><CR>
 """""""""""
 
 "https://vi.stackexchange.com/a/14536
@@ -194,21 +197,3 @@ autocmd BufReadPost *
 \ endif
 
 augroup END
-
-"func GitGrep(...)
-"  let save = &grepprg
-"  set grepprg=git\ grep\ -n\ $*
-"  let s = 'grep'
-"  for i in a:000
-"    let s = s . ' ' . i
-"  endfor
-"  exe s
-"  let &grepprg = save
-"endfun
-"command -nargs=? G call GitGrep(<f-args>)
-
-"func GitGrepWord()
-"  normal! "zyiw
-"  call GitGrep('-w -e ', getreg('z'))
-"endf
-"nmap <C-x>G :call GitGrepWord()<CR>
