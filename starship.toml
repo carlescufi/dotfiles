@@ -12,6 +12,7 @@ format = """
 $username\
 $hostname\
 $env_var\
+$shell\
 $localip\
 $shlvl\
 $directory\
@@ -37,7 +38,6 @@ $jobs\
 $battery\
 $time\
 $container\
-$shell\
 $character"""
 
 [username]
@@ -48,15 +48,19 @@ style_user="yellow"
 [hostname]
 ssh_only = false
 format="[@$hostname]($style) "
-style="dimmed green"
+style="green"
 
 [env_var.PS1_TMUX]
 disabled = false
-style = "fg:green" 
+style = "fg:green"
 format = "[$env_value]($style)in "
 
+[shell]
+style = "fg:white"
+disabled = true
+
 [directory]
-format = "  [$path]($style)[$read_only]($read_only_style) "
+format = "  [$path]($style)[$read_only]($read_only_style) "
 truncation_length=100
 truncate_to_repo=false
 style="cyan"
