@@ -52,8 +52,8 @@ style="green"
 
 [env_var.PS1_TMUX]
 disabled = false
-style = "fg:green"
-format = "[ ]($style) "
+style = "green"
+format = "[in  ]($style) "
 
 [shell]
 style = "fg:white"
