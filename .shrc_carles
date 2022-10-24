@@ -44,7 +44,7 @@ _bash_init()
 _common_init()
 {
     if [[ -z "$TMUX" ]]; then
-        unset PS1_TMUX=""
+        unset PS1_TMUX
     else
         export PS1_TMUX="1"
     fi

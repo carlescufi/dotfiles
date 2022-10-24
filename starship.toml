@@ -47,13 +47,13 @@ style_user="yellow"
 
 [hostname]
 ssh_only = false
-format="[@$hostname]($style) "
+format="@[$hostname]($style) "
 style="green"
 
 [env_var.PS1_TMUX]
 disabled = false
-style = "green"
-format = "[in  ]($style) "
+style = "blue"
+format = "in [ ]($style) "
 
 [shell]
 style = "fg:white"
@@ -61,7 +61,7 @@ disabled = true
 
 [directory]
 #   looks better with mintty,   with macOS
-format = "in   [$path]($style)[$read_only]($read_only_style) "
+format = "in [  $path]($style)[$read_only]($read_only_style) "
 truncation_length=100
 truncate_to_repo=false
 style="cyan"
