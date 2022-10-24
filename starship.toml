@@ -53,14 +53,15 @@ style="green"
 [env_var.PS1_TMUX]
 disabled = false
 style = "fg:green"
-format = "[$env_value]($style)in "
+format = "[ ]($style) "
 
 [shell]
 style = "fg:white"
 disabled = true
 
 [directory]
-format = "  [$path]($style)[$read_only]($read_only_style) "
+#   looks better with mintty,   with macOS
+format = "in   [$path]($style)[$read_only]($read_only_style) "
 truncation_length=100
 truncate_to_repo=false
 style="cyan"
@@ -68,6 +69,7 @@ style="cyan"
 [git_branch]
 symbol = ""
 style="purple"
+format="on [$symbol$branch(:$remote_branch)]($style) "
 
 [git_commit]
 tag_symbol = " tag "

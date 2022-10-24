@@ -44,9 +44,9 @@ _bash_init()
 _common_init()
 {
     if [[ -z "$TMUX" ]]; then
-        export PS1_TMUX=""
+        unset PS1_TMUX=""
     else
-        export PS1_TMUX="  "
+        export PS1_TMUX="1"
     fi
     export PATH=$PATH:~/bin:~/.local/bin/
     GPG_TTY=$(tty)
@@ -85,6 +85,7 @@ alias ls='ls --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias cdd='cd ~/dotfiles'
 alias cdz='cd ~/src/zephyr/zephyr'
 alias cdb='cd ~/src/mcuboot'
 alias cdn='cd ~/src/ncs'
