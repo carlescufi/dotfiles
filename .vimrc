@@ -161,6 +161,12 @@ nnoremap <C-G> :GitGrep <cword><CR>
 nnoremap <C-F> :GitGrep -w <cword><CR>
 """""""""""
 
+" Quickfix / Location List toggling
+" https://stackoverflow.com/a/63162084/337201
+nnoremap <expr> <leader>qf empty(filter(getwininfo(), 'v:val.quickfix')) ? ':copen<CR>' : ':cclose<CR>'
+nnoremap <expr> <leader>ll empty(filter(getwininfo(), 'v:val.loclist')) ? ':lopen<CR>' : ':lclose<CR>'
+""""""
+
 "https://vi.stackexchange.com/a/14536
 "cnoremap <expr> ls<CR> (getcmdtype() == ':' && getcmdpos() == 1) ? "ls\<CR>:b" : "ls"
 
