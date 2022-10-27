@@ -77,6 +77,10 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 xnoremap p pgvy
 "Split tab out with tt
 noremap tt :tab split<CR>
+" Avoid moving forward/backward when searching for the word under the cursor
+" https://stackoverflow.com/a/50098912/337201
+nnoremap * *``
+nnoremap # #``
 """""""""""
 
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzvwfdf/?utm_source=share&utm_medium=web2x&context=3
