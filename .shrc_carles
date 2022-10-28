@@ -16,6 +16,9 @@ _omz_init()
 
     unset LESS;
 }
+function set_win_title(){
+  echo -ne "\033]0; $(basename "$PWD") \007"
+}
 
 _zsh_init()
 {
@@ -26,7 +29,9 @@ _zsh_init()
     alias help=run-help
     export CLICOLOR=1
 
+    # starship
     eval "$(starship init zsh)"
+    starship_precmd_user_func="set_win_title"
 
     #_omz_init
 }
