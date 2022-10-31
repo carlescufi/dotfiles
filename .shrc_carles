@@ -43,7 +43,9 @@ _bash_init()
     #export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h$PS1_TMUX \[\e[33m\]\w \[\e[34m\]$(__git_ps1 "(%s)")\[\e[0m\]\n$ '
     source ~/bin/west-completion.bash
 
+if [[ $(uname -s) != CYGWIN* ]];then
     eval "$(starship init bash)"
+fi
 }
 
 _common_init()
