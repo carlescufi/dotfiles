@@ -70,7 +70,15 @@ let mapleader=" "
 "" disable highlights
 map <silent> <leader><space> :nohl<CR>
 "" remove trailing spaces
-nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+nnoremap <Leader>rw :%s/\s\+$//e<CR>
+"" Exit insert mode without Esc
+"" https://vim.fandom.com/wiki/Avoid_the_escape_key#Mappings
+""" with vim-easyescape
+"let g:easyescape_chars = { "j": 1, "k": 1 }
+"let g:easyescape_timeout = 100
+"cnoremap jk <ESC>
+""" without vim-easyescape
+inoremap jk <Esc>
 
 " General key bindings
 " Paste and copy to repaste again
@@ -113,6 +121,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+"Plug 'zhou13/vim-easyescape'
 call plug#end()
 
 "FZF configuration
@@ -184,7 +193,7 @@ set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder
 "set statusline+=0x%-8B                       " character value
-set statusline+=%{getcwd()}\ \ 
+set statusline+=%{getcwd()}\ \
 set statusline+=%-10(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 hi StatusLineTerm ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
