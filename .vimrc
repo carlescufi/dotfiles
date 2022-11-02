@@ -193,7 +193,8 @@ set statusline+=%h%m%r%w                     " status flags
 set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type
 set statusline+=%=                           " right align remainder
 "set statusline+=0x%-8B                       " character value
-set statusline+=%{getcwd()}\ \
+set statusline+=%{getcwd()}\ 
+set statusline+=\[%{FugitiveHead()}\]\ 
 set statusline+=%-10(%l,%c%V%)               " line, character
 set statusline+=%<%P                         " file position
 hi StatusLineTerm ctermbg=24 ctermfg=254 guibg=#004f87 guifg=#e4e4e4
