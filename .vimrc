@@ -21,7 +21,7 @@ set backspace=indent,eol,start
 set textwidth=80 " Break lines after 80 chars
 set undofile
 set undodir=~/.vimundo
-set timeoutlen=1000
+set timeoutlen=500
 set ttimeoutlen=0
 set showcmd " Display incomplete commands
 set autoread " Auto-load a file when it changes
@@ -44,7 +44,7 @@ set belloff=all " Disable visual bell
 " searching
 set hlsearch " Highlight search results
 set incsearch " Do incremental searching
-set showmatch
+"set showmatch " strange artifacts
 set smartcase
 set ignorecase
 
