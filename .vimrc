@@ -97,7 +97,7 @@ nnoremap <leader>b :ls<cr>:b<space>
 " Terminal
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzw0ns5/?utm_source=share&utm_medium=web2x&context=3
 autocmd TerminalOpen * setlocal nobuflisted
-set termwinsize=25x0
+set termwinsize=25*0
 " Esc-Esc in terminal switches to normal mode
 tnoremap <Esc><Esc> <C-w><S-n>
 """"""""
