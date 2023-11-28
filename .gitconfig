@@ -16,7 +16,7 @@
 [diff]
         tool = bc4
 [credential]
-	helper = cache
+	helper = store
 [alias]
   logc = log --graph --decorate --date=relative --pretty=format:\"%C(auto)%h - %C(red)%<(4,trunc)%an %C(blue)%<(24,trunc)%ad : %C(reset)%s\"
   lod = log --graph --decorate --date=local --pretty=format:\"%h - %an, %ad : %s\"
@@ -44,6 +44,8 @@
   br = branch -vv -a
   cfg = config -l
   mb = merge-base
+  isshainbranch =  "!f() { git merge-base --is-ancestor $1 HEAD; }; f"
+  isancestor = merge-base --is-ancestor # ancestor descendant
   stat = status --porcelain --branch
   st = status
   sta = status --porcelain --branch --ignored
@@ -64,5 +66,7 @@
        token = invalid
 [init]
        defaultBranch = main
-[credential]
-       helper = "!f() { printf \"%s\\n\" \"username=carlescufi\" \"password=$GH_TOKEN\"; };f"
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
+#[credential]
+#       helper = "!f() { printf \"%s\\n\" \"username=carlescufi\" \"password=$GH_TOKEN\"; };f"
