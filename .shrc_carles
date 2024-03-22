@@ -53,7 +53,7 @@ _zsh_init()
     zstyle ':completion:*' format 'Completing %d'
     zstyle ':completion:*' group-name ''
     zstyle ':completion:*' menu select=2
-    eval "$(dircolors -b)"
+#    eval "$(dircolors -b)"
     zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
     zstyle ':completion:*' list-colors ''
     zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -66,7 +66,7 @@ _zsh_init()
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
     zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-    source ~/bin/west-completion.zsh
+#    source ~/bin/west-completion.zsh
 
     #_omz_init
 }
@@ -94,6 +94,7 @@ _common_init()
     GPG_TTY=$(tty)
     export GPG_TTY
     export STARSHIP_CONFIG=~/dotfiles/starship.toml
+    export NRFUTIL_NET_GIT_FETCH_WITH_CLI=true
 }
 
 _common_init
@@ -161,7 +162,6 @@ alias zpsdk='export ZEPHYR_TOOLCHAIN_VARIANT=zephyr'
 alias zpxt='export ZEPHYR_TOOLCHAIN_VARIANT=xtools'
 alias zclr='unset ZEPHYR_BASE; export PATH=`echo $PATH|sed "s|src/.*zephyr/scripts[:]*||g";hash -r`'
 alias idlx='indent -nbad -bap -nbc -bbo -hnl -br -brs -c33 -cd33 -ncdb -ce -ci4 -cli0 -d0 -di1 -nfc1 -i8 -ip0 -l80 -lp -npcs -nprs -npsl -sai -saf -saw -ncs -nsc -sob -nfca -cp33 -ss -ts8 -il1'
-alias python=python3
 alias wcmdt='PYTHONPATH=$(west list --format="{abspath}" west)/src:$PWD py.test'
 alias ncssc='zephyr/scripts/sanitycheck --board-root nrf/boards --testcase-root nrf/samples --testcase-root nrf/applications --build-only --disable-unrecognized-section-test -t ci_build --inline-logs'
 alias ncscc='source ../zephyr/zephyr-env.sh && ../ci-tools/scripts/check_compliance.py --commits HEAD~..HEAD'

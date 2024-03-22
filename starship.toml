@@ -51,9 +51,10 @@ format="@[$hostname]($style) "
 style="green"
 
 [env_var.PS1_TMUX]
+#Nerd font  
 disabled = false
 style = "blue"
-format = "in [ ]($style) "
+format = "in [⧉]($style) "
 
 [shell]
 style = "fg:white"
@@ -61,13 +62,14 @@ disabled = true
 
 [directory]
 #   looks better with mintty,   with macOS
-format = "in [  $path]($style)[$read_only]($read_only_style) "
+format = "in [📁 $path]($style)[$read_only]($read_only_style) "
 truncation_length=100
 truncate_to_repo=false
-style="cyan"
+style="blue"
 
 [git_branch]
-symbol = ""
+# Nerd font: "
+symbol = "↑"
 style="purple"
 format="on [$symbol$branch(:$remote_branch)]($style) "
 
@@ -84,6 +86,7 @@ renamed = "r"
 deleted = "x"
 stashed = ""
 untracked = ""
+ignore_submodules=true
 
 [python]
 #symbol = "py "
@@ -92,3 +95,6 @@ untracked = ""
 disabled = false
 symbol = "err: "
 map_symbol = false
+
+[battery]
+disabled = true

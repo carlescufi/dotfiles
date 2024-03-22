@@ -5,8 +5,12 @@
 [core]
 	protectNTFS = false
 	longpaths = true
+	untrackedCache = true
+	fsmonitor = true
 	#autocrlf = input
 	#filemode = false
+[index]
+	version = 4
 [push]
         default = simple
 [pull]
