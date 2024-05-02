@@ -66,10 +66,43 @@ _zsh_init()
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
     zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-#    source ~/bin/west-completion.zsh
+    # Python venv loading
+    # https://stackoverflow.com/a/63955939
+    autoload -Uz add-zsh-hook
+    add-zsh-hook precmd automatically_activate_python_venv
 
+#    source ~/bin/west-completion.zsh
     #_omz_init
 }
+
+#### Python venv start
+function automatically_activate_python_venv() {
+  if [[ -z $VIRTUAL_ENV ]] ; then
+    activate_venv
+  else
+    parentdir="$(dirname ${VIRTUAL_ENV})"
+    if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+      deactivate
+      activate_venv
+    fi
+  fi
+}
+function activate_venv() {
+  local d n
+  d=$PWD
+
+  until false
+  do
+  if [[ -f $d/.venv/bin/activate ]] ; then
+    source $d/.venv/bin/activate
+    break
+  fi
+    d=${d%/*}
+    # d="$(dirname "$d")"
+    [[ $d = *\/* ]] || break
+  done
+}
+#### Python venv end
 
 _bash_init()
 {
