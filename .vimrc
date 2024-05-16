@@ -62,6 +62,7 @@ colorscheme molokai
 autocmd FileType html,css,tex setlocal expandtab softtabstop=2 shiftwidth=2
 autocmd FileType python setlocal expandtab softtabstop=4 shiftwidth=4
 au BufRead,BufNewFile *.md set filetype=markdown
+au FileType rst setlocal syntax=OFF
 
 " key bindings
 " nnoremap <SPACE> <Nop>
