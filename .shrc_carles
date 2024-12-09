@@ -33,6 +33,10 @@ _zsh_init()
     eval "$(starship init zsh)"
     starship_precmd_user_func="set_win_title"
 
+    # atuin
+    eval "$(atuin init zsh)"
+    #eval "$(atuin init zsh --disable-up-arrow)"
+
     # Reasonable defaults
     setopt histignorealldups sharehistory
 

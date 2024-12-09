@@ -28,6 +28,7 @@ set autoread " Auto-load a file when it changes
 set nofoldenable " Disable folds
 set linebreak " Display long lines by breaking them
 set splitbelow " New windows appear below the current one
+set splitright " New windows appear to the right of the current one
 " Enable file type detection.Also load indent files, to automatically do
 " language-dependent indenting.
 filetype plugin indent on
@@ -72,6 +73,8 @@ let mapleader=" "
 map <silent> <leader><space> :nohl<CR>
 "" remove trailing spaces
 nnoremap <Leader>rw :%s/\s\+$//e<CR>
+"" delete buffer without closing window
+nnoremap <silent> <Leader>c :bp<BAR>bd#<CR>
 "" Exit insert mode without Esc
 "" https://vim.fandom.com/wiki/Avoid_the_escape_key#Mappings
 """ with vim-easyescape
@@ -98,9 +101,11 @@ nnoremap <leader>b :ls<cr>:b<space>
 " Terminal
 "https://www.reddit.com/r/vim/comments/8njgul/comment/dzw0ns5/?utm_source=share&utm_medium=web2x&context=3
 autocmd TerminalOpen * setlocal nobuflisted
-set termwinsize=25*0
+"set termwinsize=15*0
 " Esc-Esc in terminal switches to normal mode
 tnoremap <Esc><Esc> <C-w><S-n>
+command Vterm :vert term
+"let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 """"""""
 
 " Plugins
@@ -122,6 +127,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
+Plug 'qpkorr/vim-bufkill'
 "Plug 'zhou13/vim-easyescape'
 call plug#end()
 

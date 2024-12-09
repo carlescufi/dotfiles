@@ -65,6 +65,7 @@
   delrb = push origin --delete
   cred =  config --global credential.helper 'cache --timeout=3600' 
   grek =  "!f() { git grep $1 -- '**Kconfig*'; }; f"
+  tgc = -c gc.reflogExpire=now -c gc.reflogExpireUnreachable=now -c gc.rerereresolved=0 -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc
 [github]
 	user = carlescufi
        token = invalid
