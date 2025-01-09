@@ -33,6 +33,14 @@ set splitright " New windows appear to the right of the current one
 " language-dependent indenting.
 filetype plugin indent on
 
+"clipboard
+" Map Y to copying to clipboard
+nnoremap Y "+y
+vnoremap Y "+y
+nnoremap yY ^"+y$
+" All yanks go to clipboard
+"set clipboard^=unnamed,unnamedplus
+
 " appearance
 set encoding=utf-8
 set termencoding=utf-8

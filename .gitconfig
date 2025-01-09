@@ -1,7 +1,7 @@
 [user]
 	name = Carles Cufi
 	email = carles.cufi@nordicsemi.no
-	signingkey = $GIT_PK
+	signingkey = 51AC9DF9005833956CFF98FC40FE518ADD7768E6
 [core]
 	protectNTFS = false
 	longpaths = true
@@ -38,6 +38,7 @@
   ci = commit
   cia = commit -a
   ca = commit --amend
+  cane = commit --amend --no-edit
   cf = log -m -1 --name-only --pretty="format:"
   fm = fetch -v origin master:master
   st = status --short --branch
